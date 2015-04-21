@@ -1,0 +1,12 @@
+TODO:
+
+
+Stanna vid närhet till vägg
+
+
+Stanna vid kontakt med vägg
+
+Live styrning 
+
+Action on wall (random new dir) 
+
