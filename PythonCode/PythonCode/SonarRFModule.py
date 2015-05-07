@@ -2,6 +2,9 @@ from naoqi import ALProxy
 from naoqi import ALBroker
 from naoqi import ALModule
 
+import MotionMaestro
+import RegisterMaestro
+
 class SonarRFModule(ALModule):
   """ Mandatory docstring.
       comment needed to create a new python module
@@ -16,9 +19,14 @@ class SonarRFModule(ALModule):
     print value
     print message
     self.tts.say("something at my right front")
+
     memory.subscribeToEvent("SonarRightDetected","SonarRF","sonarHandler")
 
-  	
+    postureProxy=RegisterMaestro.registerPostureProxy()
+    motionProxy=RegisterMaestro.registerMotionProxy()
+  #  MotionMaestro.turnLeft(postureProxy,motionProxy)
+  #  time.sleep(1);
+  #  MotionMaestro.startWalking(postureProxy,motionProxy)
 
   def __init__(self, name):
   	ALModule.__init__(self, name)

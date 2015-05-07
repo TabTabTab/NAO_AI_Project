@@ -6,112 +6,12 @@ from naoqi import ALModule
 from SonarRModule import SonarRModule 
 from SonarRFModule import SonarRFModule
 
+import MotionMaestro
+import RegisterMaestro
+
+
 IP = "192.168.0.101"  # Replace here with your NaoQi's IP address.
 PORT = 9559
-
-
-
-
-
-def registerPostureProxy():
-	postureProxy=False
-	#connect to posture
-	try:
-		postureProxy = ALProxy("ALRobotPosture", IP, PORT)
-		return postureProxy
-	except Exception, e:
-		print "Could not create proxy to ALRobotPosture"
-    	print "Error was: ", e
-    	postureProxy=False
-    	return postureProxy
-
-def registerMotionProxy():
-	motionProxy=False
-	#connect to posture
-	try:
-		motionProxy = ALProxy("ALMotion", IP, PORT)
-		return motionProxy
-	except Exception, e:
-		print "Could not create proxy to ALMotion"
-    	print "Error was: ", e
-    	motionProxy=False
-    	return motionProxy
-
-def registerMemoryProxy():
-	memoryProxy=False
-	#connect to posture
-	try:
-		memoryProxy = ALProxy("ALMemory", IP, PORT)
-		return memoryProxy
-	except Exception, e:
-		print "Could not create proxy to ALMemory"
-    	print "Error was: ", e
-    	memoryProxy=False
-    	return memoryProxy
-
-
-def registerSonarProxy():
-	sonarProxy=False
-	#connect to posture
-	try:
-		sonarProxy = ALProxy("ALSonar", IP, PORT)
-		return sonarProxy
-	except Exception, e:
-		print "Could not create proxy to ALSonar"
-    	print "Error was: ", e
-    	sonarProxy=False
-    	return sonarProxy
-
-
-def standUp(postureProxy):
-	print "Standing Up"
-	postureProxy.goToPosture("Stand", 1.0)
-
-def sitDown(postureProxy):
-	print "Sitting Down"
-	postureProxy.goToPosture("Sit", 1.0)
-
-def startWalking(postureProxy,motionProxy):
-	stiffnessOn(motionProxy)
-	postureProxy.goToPosture("StandInit", 0.5)
-	motionProxy.setWalkArmsEnabled(True, True)
-	motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
-	X = 0.5  
-	Y = 0.0
-	Theta = 0.0
-	Frequency =0.0 # low speed
-	motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
-
-def turnRight(postureProxy,motionProxy):
-	stiffnessOn(motionProxy)
-	postureProxy.goToPosture("StandInit", 0.5)
-	motionProxy.setWalkArmsEnabled(True, True)
-	X = 0.0  
-	Y = 0.5
-	Theta = 0.0
-	Frequency =0.0 # low speed
-	motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
-
-
-
-
-
-def stopWalking(motionProxy):
-    X = 0.0
-    Y = 0.0
-    Theta = 0.0
-    Frequency =1.0
-    motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
-
-def stiffnessOn(motionProxy):
-    # We use the "Body" name to signify the collection of all joints
-    pNames = "Body"
-    pStiffnessLists = 1.0
-    pTimeLists = 1.0
-    motionProxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
-
-
-
 
 
 def main():
@@ -124,13 +24,13 @@ def main():
 
 	       
 	#now we try sonar
-	sonarProxy=registerSonarProxy()
+	sonarProxy=RegisterMaestro.registerSonarProxy()
 
 	sonarProxy.subscribe("myApplication")
 
-	postureProxy=registerPostureProxy()
+	postureProxy=RegisterMaestro.registerPostureProxy()
 
-	motionProxy=registerMotionProxy()
+	motionProxy=RegisterMaestro.registerMotionProxy()
 
 	global SonarRF
 	SonarRF = SonarRFModule("SonarRF")
@@ -138,10 +38,15 @@ def main():
 	global SonarR
 	SonarR = SonarRModule("SonarR")
 
-	startWalking(postureProxy,motionProxy)
-	for i in xrange(0,10):
-		time.sleep(1.0)
-	stopWalking(motionProxy)
+	#MotionMaestro.startWalking(postureProxy,motionProxy)
+	#time.sleep(3)
+	print "turning test"
+	MotionMaestro.turnRight3(motionProxy)
+	print "finished turning"
+	time.sleep(5)
+	#for i in xrange(0,2):
+	#	time.sleep(1.0)
+	MotionMaestro.stopWalking(motionProxy)
 
 
 	
