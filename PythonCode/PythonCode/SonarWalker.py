@@ -4,6 +4,7 @@ from naoqi import ALBroker
 from naoqi import ALModule
 
 from SonarRModule import SonarRModule 
+from SonarLModule import SonarLModule 
 from SonarRFModule import SonarRFModule
 
 import MotionMaestro
@@ -38,12 +39,16 @@ def main():
 	global SonarR
 	SonarR = SonarRModule("SonarR")
 
-	#MotionMaestro.startWalking(postureProxy,motionProxy)
+	global SonarL
+	SonarL = SonarLModule("SonarL")
+
 	#time.sleep(3)
-	print "turning test"
-	MotionMaestro.turnRight3(motionProxy)
-	print "finished turning"
-	time.sleep(5)
+	MotionMaestro.standUp(postureProxy)
+	MotionMaestro.startWalking(postureProxy,motionProxy)
+	print "start walking test"
+	time.sleep(20)
+	#MotionMaestro.turnRight3(motionProxy)
+	print "finished walking"
 	#for i in xrange(0,2):
 	#	time.sleep(1.0)
 	MotionMaestro.stopWalking(motionProxy)
