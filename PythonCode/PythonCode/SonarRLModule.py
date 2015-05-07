@@ -1,7 +1,7 @@
 from naoqi import ALProxy
 from naoqi import ALBroker
 from naoqi import ALModule
-
+import time
 from MotionMaestro import MotionMaestro
 
 class SonarRLModule(ALModule):
@@ -21,6 +21,9 @@ class SonarRLModule(ALModule):
     print "Now I am turning right"
     self.motionMaestro.turnRightRad(0.5)
     memory.subscribeToEvent("SonarLeftDetected",self.name,"sonarLeftHandler")
+    # speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
+    time.sleep(0.2)
+    self.motionMaestro.startWalking()
 
 
   def sonarRightHandler(self, key, value, message):
@@ -36,6 +39,9 @@ class SonarRLModule(ALModule):
     print "Now I am turning left"
     self.motionMaestro.turnLeftRad(0.5)
     memory.subscribeToEvent("SonarRightDetected",self.name,"sonarRightHandler")
+    # speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
+    time.sleep(0.2)
+    self.motionMaestro.startWalking()
 
   	
 
