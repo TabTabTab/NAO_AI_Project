@@ -49,6 +49,12 @@ def turnRight3(motionProxy):
 	theta=1.5709
 	motionProxy.moveTo(x, y, theta)
 
+def turnRightRad(motionProxy,rad):
+	x=0.0
+	y=0.0
+	theta=rad
+	motionProxy.moveTo(x, y, theta)
+
 def turnLeft(postureProxy,motionProxy):
 	stopWalking(motionProxy)
 	stiffnessOn(motionProxy)
