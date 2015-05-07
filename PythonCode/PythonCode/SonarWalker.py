@@ -37,11 +37,10 @@ def main():
 	SonarRF = SonarRFModule("SonarRF")
 
 	global SonarR
-	SonarR = SonarRModule("SonarR")
+	SonarR = SonarRModule("SonarR",postureProxy,motionProxy)
 
-	global SonarL
-	SonarL = SonarLModule("SonarL")
-
+	#global SonarL
+	#SonarL = SonarLModule("SonarL")
 	#time.sleep(3)
 	MotionMaestro.standUp(postureProxy)
 	MotionMaestro.startWalking(postureProxy,motionProxy)
