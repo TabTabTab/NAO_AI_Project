@@ -2,6 +2,8 @@ from naoqi import ALProxy
 from naoqi import ALBroker
 from naoqi import ALModule
 
+from MotionMaestro import MotionMaestro
+
 class SonarLModule(ALModule):
   """ Mandatory docstring.
       comment needed to create a new python module
@@ -11,7 +13,7 @@ class SonarLModule(ALModule):
         comment needed to create a bound method
     """
     memory.unsubscribeToEvent("SonarRightNothingDetected","SonarL")
-    print "sonar?"
+    print "sonar left event"
     print key
     print value
     print message
