@@ -40,6 +40,7 @@ def main():
 
 	#MotionMaestro.startWalking(postureProxy,motionProxy)
 	#time.sleep(3)
+	MotionMaestro.standUp(postureProxy)
 	print "turning test"
 	MotionMaestro.turnRight3(motionProxy)
 	print "finished turning"
