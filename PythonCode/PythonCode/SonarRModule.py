@@ -27,6 +27,7 @@ class SonarRModule(ALModule):
 
   	
 
+
   def __init__(self, name,postureProxy,motionProxy):
     ALModule.__init__(self, name)
     self.tts = ALProxy("ALTextToSpeech")
@@ -35,3 +36,4 @@ class SonarRModule(ALModule):
     global memory
     memory = ALProxy("ALMemory")
     memory.subscribeToEvent("SonarLeftNothingDetected","SonarR","sonarHandler")
+

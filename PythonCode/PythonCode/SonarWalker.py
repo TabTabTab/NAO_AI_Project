@@ -39,13 +39,10 @@ def main():
 	global SonarR
 	SonarR = SonarRModule("SonarR",postureProxy,motionProxy)
 
-	#global SonarL
-	#SonarL = SonarLModule("SonarL")
-	#time.sleep(3)
-	MotionMaestro.standUp(postureProxy)
+
 	MotionMaestro.startWalking(postureProxy,motionProxy)
 	print "start walking test"
-	time.sleep(20)
+	time.sleep(5)
 	#MotionMaestro.turnRight3(motionProxy)
 	print "finished walking"
 	#for i in xrange(0,2):

@@ -39,4 +39,4 @@ class SonarRFModule(ALModule):
         # Subscribe to the FaceDetected event:
 	global memory
 	memory = ALProxy("ALMemory")
-	memory.subscribeToEvent("SonarRightDetected","SonarRF","sonarHandler")
+	memory.subscribeToEvent("SonarRightDetected",name,"sonarHandler")
