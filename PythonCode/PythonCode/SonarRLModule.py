@@ -21,8 +21,8 @@ class SonarRLModule(ALModule):
     print "Now I am turning right"
     self.motionMaestro.turnRightRad(0.5)
     memory.subscribeToEvent("SonarLeftDetected",self.name,"sonarLeftHandler")
-    # speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
-    time.sleep(0.2)
+    ## speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
+    #time.sleep(0.2)
     self.motionMaestro.startWalking()
 
 
@@ -39,8 +39,8 @@ class SonarRLModule(ALModule):
     print "Now I am turning left"
     self.motionMaestro.turnLeftRad(0.5)
     memory.subscribeToEvent("SonarRightDetected",self.name,"sonarRightHandler")
-    # speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
-    time.sleep(0.2)
+    ## speep to see if it is safe to move forward, (hopefully a new event will have been caught if so)
+    #time.sleep(0.2)
     self.motionMaestro.startWalking()
 
   	
@@ -54,3 +54,4 @@ class SonarRLModule(ALModule):
     memory = ALProxy("ALMemory")
     memory.subscribeToEvent("SonarLeftDetected",name,"sonarLeftHandler")
     memory.subscribeToEvent("SonarRightDetected",name,"sonarRightHandler")
+    print "subbed to RL"

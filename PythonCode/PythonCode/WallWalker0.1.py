@@ -17,8 +17,8 @@ IP2="127.0.0.1"
 PORT2=39327
 
 
-IP=IP2
-PORT=PORT2
+#IP=IP2
+#PORT=PORT2
 
 
 def main():
@@ -48,7 +48,7 @@ def main():
 
 	motionMaestro.startWalking()
 	print "start walking test"
-	time.sleep(25)
+	time.sleep(10)
 	print "finished walking"
 	motionMaestro.stopWalking()
 

@@ -18,40 +18,45 @@ class MotionMaestro:
 		self.postureProxy.goToPosture("Sit", 1.0)
 
 	def startWalking(self):
-		self.stiffnessOn()
-		self.postureProxy.goToPosture("StandInit", 0.5)
-		self.motionProxy.setWalkArmsEnabled(True, True)
-		self.motionProxy.setMotionConfig([["ENABLE_FOOT_CONTACT_PROTECTION", True]])
-		X = 0.5  
-		Y = 0.0
+		self.move(0.5,0.0)
+
+	def continueStraight(self):
+		X=0.8
+		Y=0
 		Theta = 0.0
 		Frequency =0.0 # low speed
 		self.motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+	def turnRightRad(self,theta):
+		self.turnRad(-theta)
 
-	def turnRightRad(self,rad):
+	def turnLeftRad(self,theta):
+		self.turnRad(theta)
+
+	#pos theta is left neg is right
+	def turnRad(self,theta):
 		self.stopWalking()
 		x=0.0
 		y=0.0
-		theta=rad
 		self.motionProxy.moveTo(x, y, theta)
 
-	def turnLeftRad(self,rad):
-		self.stopWalking()
-		x=0.0
-		y=0.0
-		theta=-rad
-		self.motionProxy.moveTo(x, y, theta)
 
 	def moveLeft(self):
+		self.move(0.0,0.5)
+
+	def moveRight(self):
+		self.move(0.0,-0.5)
+
+	def move(self,X,Y):
 		self.stopWalking()
 		self.stiffnessOn()
 		self.postureProxy.goToPosture("StandInit", 0.5)
 		self.motionProxy.setWalkArmsEnabled(True, True)
-		X = 0.2  
-		Y = -0.5
+		#X = 0.0  
+		#Y = 0.5
 		Theta = 0.0
 		Frequency =0.0 # low speed
 		self.motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+
 
 	def stopWalking(self):
 		X = 0.0
