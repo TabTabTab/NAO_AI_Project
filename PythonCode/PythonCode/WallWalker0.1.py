@@ -2,7 +2,8 @@ import time
 from naoqi import ALProxy
 from naoqi import ALBroker
 from naoqi import ALModule
-
+import almath as m
+import math
 from SonarRLModule import SonarRLModule 
 
 
@@ -42,13 +43,30 @@ def main():
 	motionMaestro = MotionMaestro(postureProxy,motionProxy)
 
 
-	global SonarRL
-	SonarRL = SonarRLModule("SonarRL",motionMaestro)
+	#global SonarRL
+	#SonarRL = SonarRLModule("SonarRL",motionMaestro)
 
 
+	robotPositionBeforeCommand  = m.Pose2D(motionProxy.getRobotPosition(False))
 	motionMaestro.startWalking()
 	print "start walking test"
-	time.sleep(10)
+	print "before:"
+	print robotPositionBeforeCommand
+	time.sleep(2)
+	robotPositionAfterCommand = m.Pose2D(motionProxy.getRobotPosition(False))
+	print "\nafter:"
+	print robotPositionAfterCommand
+
+
+
+	print "disance walked:"
+	dx=robotPositionBeforeCommand.x-robotPositionAfterCommand.x
+	dy=robotPositionBeforeCommand.y-robotPositionAfterCommand.y
+	dist=math.sqrt(dx**2+dy**2)
+	print "dx: ",dx
+	print "dy: ",dy
+	print "dist: ",dist
+
 	print "finished walking"
 	motionMaestro.stopWalking()
 

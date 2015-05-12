@@ -60,7 +60,7 @@ def main():
 			v7=v7+memoryProxy.getData("Device/SubDeviceList/US/Right/Sensor/Value7")
 			v8=v8+ memoryProxy.getData("Device/SubDeviceList/US/Right/Sensor/Value8")
 			v9=v9+memoryProxy.getData("Device/SubDeviceList/US/Right/Sensor/Value9")
-
+		
 		v=v/samps
 		v1=v1/samps
 		v2=v2/samps

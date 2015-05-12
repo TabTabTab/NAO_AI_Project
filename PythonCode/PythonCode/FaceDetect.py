@@ -101,10 +101,13 @@ for i in range(0, 4):
 
         # Second Field = Extra info (empty for now).
         faceExtraInfo = faceInfo[1]
-
+        print "extrainfo"
+        print faceExtraInfo
+        print "printing the faace"
+        print faceShapeInfo
+        print "end of face, here it is again"
         print "  alpha %.3f - beta %.3f" % (faceShapeInfo[1], faceShapeInfo[2])
         print "  width %.3f - height %.3f" % (faceShapeInfo[3], faceShapeInfo[4])
-        postureProxy.goToPosture("Sit", 1.0)
         if(foundLastCheck):
             ttsProxy.say("I still see you!")
         else:
@@ -119,11 +122,9 @@ for i in range(0, 4):
   else:
     print "No face detected"
     foundLastCheck=False
-    postureProxy.goToPosture("SitRelax", 1.0)
     ttsProxy.say("I found nothing")
 
-#postureProxy.goToPosture("Sit", 1.0)
-postureProxy.goToPosture("SitRelax", 1.0)
+
 # Unsubscribe the module.
 faceProxy.unsubscribe("Test_Face")
 
