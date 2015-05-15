@@ -16,28 +16,29 @@ class MotionMaestro:
 	def sitDown(self):
 		print "Sitting Down"
 		self.postureProxy.goToPosture("Sit", 1.0)
-
+	#anvands ej	
 	def startWalking(self):
 		self.move(0.5,0.0)
 
 	def continueStraight(self):
-		X=0.8
+		self.stopMove()
+		X=1.0
 		Y=0
 		Theta = 0.0
 		Frequency =0.0 # low speed
-		self.motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
-	def turnRightRad(self,theta):
-		self.turnRad(-theta)
+		self.motionProxy.moveToward(X,Y,Theta)
 
-	def turnLeftRad(self,theta):
-		self.turnRad(theta)
+	def turnLeft(self):
+		self.turn(1)
+	def turnRight(self):
+		self.turn(-1)
 
-	#pos theta is left neg is right
-	def turnRad(self,theta):
-		self.stopWalking()
+
+	def turn(self,theta):
+		self.stopMove()
 		x=0.0
 		y=0.0
-		self.motionProxy.moveTo(x, y, theta)
+		self.motionProxy.moveToward(x, y, theta)
 
 
 	def moveLeft(self):
@@ -46,24 +47,18 @@ class MotionMaestro:
 	def moveRight(self):
 		self.move(0.0,-0.5)
 
+	#anvands ej, set upp sker i navigation controller atm (borde kanske var en egen metod) sen continueStraight
 	def move(self,X,Y):
-		self.stopWalking()
+		self.stopMove()
 		self.stiffnessOn()
 		self.postureProxy.goToPosture("StandInit", 0.5)
 		self.motionProxy.setWalkArmsEnabled(True, True)
-		#X = 0.0  
-		#Y = 0.5
 		Theta = 0.0
 		Frequency =0.0 # low speed
 		self.motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
-
-
-	def stopWalking(self):
-		X = 0.0
-		Y = 0.0
-		Theta = 0.0
-		Frequency =1.0
-		self.motionProxy.setWalkTargetVelocity(X, Y, Theta, Frequency)
+	
+	def stopMove(self):
+		self.motionProxy.stopMove()
 
 
 	def stiffnessOn(self):
