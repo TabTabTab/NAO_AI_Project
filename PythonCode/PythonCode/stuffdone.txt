@@ -7,3 +7,4 @@ ansiktsigenkänning (orginal grejen vi skulle göra)
 försök till avstånd med kamera
 röstigenkänning
 linjeföljande
+bildbehandling
