@@ -6,11 +6,13 @@ Stanna vid närhet till vägg
 
 Stanna vid kontakt med vägg
 
-Live styrning 
-
 Action on wall (random new dir) 
 
 
 * checka om python går att göra "app av" (kompilera)
 
 *finns openCV i nao?
+
+
+hitta ny väg när vi inte ser en linje.
+(kolla vänster/ höger) gå frammåt x m gör samma sak. Stanna. collision checking)
