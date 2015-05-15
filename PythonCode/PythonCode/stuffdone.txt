@@ -1,0 +1,9 @@
+Navigationskontroll
+
+massa koll på sonar
+event lyssnande
+sonar vinklar
+ansiktsigenkänning (orginal grejen vi skulle göra)
+försök till avstånd med kamera
+röstigenkänning
+linjeföljande
