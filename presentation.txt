@@ -1,0 +1,88 @@
+introduktion
+
+
+Om NAO roboten
+
+
+Ansiktsigenkänning, finns inbyggd men dålig
+(såg alla med glasögon som mathias)
+(ish fem rader kod)
+
+Följa en vägg.
+
+
+Python vs coreografi vs coregrafi med språk
+(eller c++, java)
+
+började med att skriva python kod för att kunna få roboten att gå. Kulminerade i en python modul "MotionMaestro" för gång
+
+Fett!
+
+Dags att följa en vägg!
+
+Sonar so much pain
+(man ska kunna få reda på avstånd, det går inte)
+Man kan både polla sensorer och subscribe:a på events.
+
+
+Nytt försök! kolla med kamera och räkna ut avståndent.
+Problem: vi har inget sätt att mäta avståndet (ingen djupmätare) 
+Måste ta två bilder, matcha features och med vinklar räkna ut avstånd (Svårt, johan får prata/skriva)
+
+Inge bra..
+
+Testa röststyrning finns också som inbyggd modul :D
+Men den är inte så bra.. Kan känna igen "right" men inte "left" och känner igen "forward" och "backward" som "forward"
+Enkelt att använda men inget sätt att kunna träna den på en röst.
+
+Sitter fast..
+Bygger ett python program så vi kan styra roboten med piltangenterna
+
+Mathias to the rescue
+
+Vi får en video med en linjeföljare av mathias
+
+Försöker få den att fungera.
+Fungerar ibland, med korrekta ljusförhållanden men väldigt ofta går den helt fel.
+
+Svårt, försöker läsa koden och förstå hur den fungerar.
+filtrerar bilden så alla pixlar mörkare än ett threshold blir svarta.
+hittar sen indexet med högst värde (vitaste pixeln) på varje rad
+kolla de "översta" pixlarna de i "mitten" och de i "botten" och ritar en rad.
+
+PROBLEM: ljusblänk i golvet tror programmet är delar av linjen. Går helt galet.
+
+Försök med threshold fix och annat pill utan lösning.
+
+slutlig lösning:
+
+Brun icke blank kartong! vi kan följa en linje! Bra att förenkla "världen" för roboten.
+Mer tid hade det varit bättre att byta ut deras algoritm mot en Hough transform (eller hette den något annat?)
+
+Vi kan följa brevid en linje men måste vara ganska nära så vi försöker vrida på huvudet. Svårt matte (johan förklara)
+
+Ändrar oss så vi lägger till funktionalitet för att hitta nya linjer när linjer är borta.
+(Titta vänster, höger, gå en bit frammåt och titta)
+
+Fortfarande problem med blänk och liknande.
+
+Men tillslut! det funkar!
+
+VIDEO
+
+
+
+
+Vad vi har lärt oss:
+Riktiga världen kan vara svårt
+Ganska dålig dockumentation
+
+
+
+
+
+TODO i framtiden:
+bättre algoritm för bildbehandlingen
+packetera det som en app
+
+
