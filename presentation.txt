@@ -87,4 +87,7 @@ packetera det som en app
 
 
 
-BEHÖVER VI BIFOOGA GAMMAL (OANVÄND) KOD??
+BEHÖVER VI:
+	* BIFOOGA GAMMAL (OANVÄND) KOD??
+	* Beskrivnign av hur projekt paketeras med NAO 
+
