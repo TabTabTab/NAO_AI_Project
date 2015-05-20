@@ -86,3 +86,5 @@ bättre algoritm för bildbehandlingen
 packetera det som en app
 
 
+
+BEHÖVER VI BIFOOGA GAMMAL (OANVÄND) KOD??

@@ -14,7 +14,24 @@ PORT = 9559
 rPeriod=1.0
 bVerbose=True
 
+headRadAngle=-0.0
+
+pic_height=240
+pic_width=320
+
+# all these valuesare used only for the andle -0.3 rad
+transform=headRadAngle!=-0.0
+start=20.0/90*pic_width
+step=4.0/90/pic_height*pic_width
+end=24.0/89*pic_width # should be 90 but better to use a too long array
+## if headANgle=0.3 these values will work nicely:
+addList=numpy.arange(start,end,step)
+pi=3.14
+headDegAngle=-headRadAngle*(pi/4)
 def printImageData(img):
+    print "left img angle: ",img[8]
+    print "top angle: ",img[9]
+    return
     aMaxL = numpy.argmax(img, axis=1 );
     print "Image surrounding pixel values"
     delta=10
@@ -23,7 +40,7 @@ def printImageData(img):
         leftI=max(0,middleI-delta)
         rightI=min(middleI+delta,len(img)-1)
         #print "indexes: ",leftI," ",middleI," ",rightI 
-        print img[i]
+        print img[6][i]
         #print img[i][leftI:rightI]
     print len(img)
     print len(img[0])
@@ -58,10 +75,10 @@ def detectLine( img, bVerbose = False ):
 
     img = cv2.filter2D(img, -1, kernel);
 
-    if (bVerbose):
-        printImageData(img)
+    #if (bVerbose):
+    #    printImageData(img)
 
-    
+
     # thresholding to remove low differential
     retval, img = cv2.threshold( img, 45, 255, cv2.THRESH_TOZERO );
 
@@ -69,6 +86,20 @@ def detectLine( img, bVerbose = False ):
 
 
     aMaxL = numpy.argmax(img, axis=1 );
+
+
+    # we will no try to move all the points:
+    if(transform):
+        shiftedList=[]
+        for i in xrange(0,len(aMaxL)):
+            if(i==0):
+
+                shiftedList.append(i)
+            else:
+                shiftedList.append(i+addList[i])
+
+        aMaxL= numpy.array(shiftedList)
+
     print "\naMaxL\n",aMaxL
     aMaxLWithoutZeros = aMaxL[aMaxL>0];
     print "\naMaxLWithoutZeros\n",aMaxLWithoutZeros
@@ -107,11 +138,25 @@ def detectLine( img, bVerbose = False ):
 
     if( bVerbose ):
         print( "rOrientation rough: %s" % rOrientation );
+        print rTop," ",rMed," ",rBase
         print( "rBase: %f, rMed: %f, rTop: %f, rOrientation: %f" % (rBase, rMed, rTop, rOrientation) );
 
     return( [(rMed/nWidth)*2-1, rOrientation] );
 # detectLine - end
 
+
+def rotateImage(image, angle):
+    #print "calling empty method rotateImage"
+    #return image
+    #currently not usable
+    print "turning angle: ",angle
+    col = image.shape[1];
+    row = image.shape[0];
+    #row,col = image.shape
+    center=tuple(numpy.array([row,col])/2)
+    rot_mat = cv2.getRotationMatrix2D(center,angle,1.0)
+    new_image = cv2.warpAffine(image, rot_mat, (col,row))
+    return new_image
 
 
 class LineFinder():
@@ -124,7 +169,7 @@ class LineFinder():
         #self.cameraModule.setParam( self.kCameraSelectID, 1 )
 
     def setHeadPitch(self):
-        self.motionProxy.angleInterpolationWithSpeed( "Head", [0.0, 0.5000 ], 0.1 )
+        self.motionProxy.angleInterpolationWithSpeed( "Head", [headRadAngle, 0.3500 ], 0.1 )
 
     def onLoad(self):
         self.bMustStop = False;
@@ -178,6 +223,7 @@ class LineFinder():
             #showImg(dataImage)
 
             if( dataImage != None ):
+                printImageData(dataImage)
                 image = (numpy.reshape(numpy.frombuffer(dataImage[6], dtype='%iuint8' % dataImage[2]), (dataImage[1], dataImage[0], dataImage[2])))
                 return image;
 
@@ -210,6 +256,9 @@ class LineFinder():
             timeBegin = time.time();
             img = self.getImageFromCamera();
 
+            
+
+
             #stopping after one itteration now
             self.onInput_onStop()
 
@@ -219,6 +268,10 @@ class LineFinder():
                 print( "ERR: error while getting image from camera: img is none" );
                 #abcdk.debug.raiseCameraFailure();
             else:
+                #flip the image acc to head orientation:
+                print "imgDimPrev: ",len(img)
+                img=rotateImage(img, headDegAngle)
+                print "rotated image Dim: ",len(img)
                 rBase, rOrientation = detectLine( img, bVerbose );
                 print( "detectLine takes: %5.3fs" % (time.time() - timeBegin ) );
                 if( rBase == None ):

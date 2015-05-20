@@ -1,0 +1,50 @@
+inaoqi-broker: construct at 0.0.0.0:0, parent : 192.168.0.101:9559
+[I] 18103 qimessaging.session: Session listener created on tcp://0.0.0.0:0
+[I] 18103 qimessaging.transportserver: TransportServer will listen on: tcp://127.0.0.1:44578
+[I] 18103 qimessaging.transportserver: TransportServer will listen on: tcp://192.168.122.1:44578
+[I] 18103 qimessaging.transportserver: TransportServer will listen on: tcp://192.168.0.102:44578
+LineFinder: start - begin
+left img angle:  0.531452775002
+top angle:  0.415388375521
+imgDimPrev:  240
+turning angle:  0.0
+rotated image Dim:  240
+
+aMaxL
+[152 154 101 152 154 194 194 194 176 100 100 183 154 154 154 154 195 195
+  99 176 176 176 176 154  98 154 196 196 196 196 131 131 131 131 136 136
+ 197 197 197  96  96  96  96  95  95  95 198 198 198 198 198  94  94  94
+  94  94  94 199 199 199 199   0  93  93   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0 310   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0 151   0   0 152   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   9   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0  13  13   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 318   0
+   0   0   0 221   0   0]
+
+aMaxLWithoutZeros
+[152 154 101 152 154 194 194 194 176 100 100 183 154 154 154 154 195 195
+  99 176 176 176 176 154  98 154 196 196 196 196 131 131 131 131 136 136
+ 197 197 197  96  96  96  96  95  95  95 198 198 198 198 198  94  94  94
+  94  94  94 199 199 199 199  93  93 310 151 152   9  13  13 318 221]
+Line Length: 71
+nFirstNonZero: 0
+nLastNonZero: 237
+nHeightSampling: 237
+nHeight: 240
+nWidth: 320
+nSamplingSize: 1
+rOrientation rough: -0.291139240506
+152.0   136.0   221.0
+rBase: 221.000000, rMed: 136.000000, rTop: 152.000000, rOrientation: -0.291139
+detectLine takes: 0.325s
+found line
+TODO:should send data to walker
+rT:  0.145569620253
+rY:  0.15
+end of loop, time total: 0.325s, time get image: 0.321s, time detect: 0.004s
+LineFinder: start - end
